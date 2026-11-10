@@ -1,0 +1,18 @@
+.mmenu {
+  position: fixed; inset: 0; z-index: 55; background: var(--clay); color: var(--ink);
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: calc(var(--nav-h) + 4vh) var(--gutter) calc(28px + env(safe-area-inset-bottom));
+  visibility: hidden;
+}
+.mmenu__nav { display: flex; flex-direction: column; gap: 0.1em; }
+.mmenu__link { text-decoration: none; font-family: var(--font-display); font-weight: 900; font-size: clamp(2.6rem, 12vw, 6rem); line-height: 1; letter-spacing: -0.035em; }
+.mmenu__mask { display: block; overflow: hidden; padding-bottom: 0.12em; }
+.mmenu__inner { display: block; transition: transform 0.4s var(--ease-out), letter-spacing 0.4s var(--ease-out); }
+.mmenu__link[aria-current="true"] .mmenu__inner { -webkit-text-stroke: 2px var(--ink); color: transparent; }
+.mmenu__cta {
+  display: flex; align-items: center; justify-content: center; gap: 0.6em; width: 100%; text-decoration: none;
+  background: var(--ink); color: var(--paper); font-family: var(--font-display); font-weight: 800; font-size: 1.15rem;
+  padding: 1.25rem 1rem; border-radius: 16px;
+}
+.mmenu__phone { text-align: center; margin-top: 14px; font-size: 0.85rem; letter-spacing: 0.08em; color: rgba(70, 53, 47, 0.75); }
+@media (min-width: 1040px) { .mmenu { display: none; } }

@@ -1,0 +1,47 @@
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 60; display: flex; justify-content: center; pointer-events: none;
+  --nav-fg: var(--ink);
+}
+.nav[data-compact="true"] { --nav-fg: var(--paper); }
+html.js:not([data-ready]) .nav { transform: translateY(-130%); }
+.nav { transition: transform 0.9s var(--ease-out); }
+
+.nav__bar {
+  pointer-events: auto; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: 18px var(--gutter); color: var(--nav-fg); background: transparent; border-radius: 0;
+  transition: width 0.7s var(--ease-out), margin 0.7s var(--ease-out), padding 0.7s var(--ease-out),
+    background 0.4s ease, color 0.4s ease, border-radius 0.7s var(--ease-out);
+}
+.nav[data-compact="true"] .nav__bar {
+  width: min(1120px, calc(100% - 24px)); margin-top: 12px; padding: 10px 12px 10px 22px;
+  background: var(--ink); border-radius: 20px;
+}
+.nav[data-open="true"] .nav__bar { background: transparent; color: var(--ink); }
+
+.nav__logo { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 600; font-size: 1.35rem; letter-spacing: -0.04em; text-decoration: none; }
+.nav__logo-mark { display: block; height: 30px; width: auto; flex: none; }
+.nav__logo-ai { font-weight: 900; }
+
+.nav__links { display: none; gap: clamp(14px, 2vw, 30px); }
+.nav__link {
+  position: relative; text-decoration: none; font-weight: 500; font-size: 0.97rem; padding: 6px 0;
+}
+.nav__link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: currentColor;
+  transform: scaleX(0); transform-origin: left; transition: transform 0.45s var(--ease-out);
+}
+.nav__link:hover::after, .nav__link[aria-current="true"]::after { transform: scaleX(1); }
+
+.nav__cta { display: none; padding: 0.7rem 1.1rem; font-size: 0.95rem; }
+.nav__cta .btn__label { align-items: center; gap: 0.55em; }
+.nav__menu { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; padding: 10px 4px; }
+
+/* tablet: CTA joins the bar, links stay in the menu */
+@media (min-width: 700px) { .nav__cta { display: inline-flex; } .nav__menu { margin-left: auto; } .nav__bar { justify-content: flex-start; } .nav__logo { margin-right: auto; } .nav__cta { margin-left: 0; } }
+/* desktop: full link row */
+@media (min-width: 1040px) {
+  .nav__links { display: flex; }
+  .nav__menu { display: none; }
+  .nav__bar { justify-content: space-between; }
+  .nav__logo { margin-right: 0; }
+}

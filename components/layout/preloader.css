@@ -1,0 +1,12 @@
+.preloader {
+  position: fixed; inset: 0; z-index: 100;
+  background: radial-gradient(ellipse at 70% 40%, #2c1007 0%, #1a0b06 45%, #130806 100%);
+  display: grid; place-items: center; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%, 0 100%);
+}
+.preloader__glow {
+  grid-area: 1 / 1; width: min(90vw, 760px); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 93, 73, 0.22) 0%, rgba(168, 93, 73, 0) 65%);
+}
+.preloader__logo { grid-area: 1 / 1; width: clamp(230px, 40vw, 480px); }
+.preloader__mask { overflow: hidden; line-height: 0; }
+.preloader__rise { display: block; width: 100%; height: auto; }
